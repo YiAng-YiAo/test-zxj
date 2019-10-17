@@ -1,0 +1,45 @@
+【角色属性】
+ 当前生命     0
+ 当前法力     1
+ 最大生命     2
+ 最大法力     3
+ 攻    击     4
+ 防    御     5
+ 法    抗     6
+ 暴    击     7
+ 坚    韧     8
+ 移动速度     9
+ 攻击速度     10
+
+
+【掉落奖励】
+100%为100
+{rate=10,type=0,id=5,count=1},…
+0：值（1金币、2元宝、3声望）
+1：道具（装备、物品）
+type
+{
+	AwardType_Numeric  = 0, // 货币类型
+	AwardType_Item	   = 1, // 道具
+}
+
+id
+{
+	NumericType_Exp		= 0, //经验
+	NumericType_Gold	= 1, // 金币
+	NumericType_YuanBao	= 2, // 元宝
+	NumericType_Fame	= 3, // 待定
+	NumericType_Essence	= 4, // 精魄
+	NumericType_GuildContrib= 5, // 公会贡献
+	NumericType_GuildFund	= 6, // 公会资金
+	NumericType_Feats       = 7, // 功勋
+	NumericType_Achieve	= 8, //成就积分
+	NumericType_Shatter 	= 9, //战纹精华--升级
+	NumericType_SpeShatter  = 10,//战纹碎片--兑换
+	NumericType_Togeatter = 11, //合击装备碎片
+	NumericType_TogeatterHigh = 12, //高等级合击装备碎片
+	NumericType_GodWeaponExp = 13,	//神兵经验
+	NumericType_PrestigeExp = 14,	//威望经验
+	NumericType_Chips       = 15,//筹码
+	NumericType_Recharge 	= 99, // 充值元宝
+}

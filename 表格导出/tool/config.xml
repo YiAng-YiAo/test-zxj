@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <currentId>0</currentId>
+  <configs>
+    <config name="主配置" toolPath="D:\cqjj\common\表格导出\tool" tablePath="" />
+  </configs>
+</Config>

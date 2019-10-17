@@ -1,0 +1,4 @@
+/node_modules
+/package-lock.json
+/lua2json/formateConfig
+/lua2json/config

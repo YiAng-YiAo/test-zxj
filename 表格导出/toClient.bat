@@ -1,0 +1,2 @@
+cd../../
+toClient.bat

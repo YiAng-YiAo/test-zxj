@@ -1,0 +1,30 @@
+{
+	"KuangYuanConfig": {
+		"rewards": "RewardData[]",
+		"rewardItem": "RewardData[]"
+	},
+	"RichManGridConfig": {
+		"param":"RewardData[] | number",
+		"exparam": "RewardData[]"
+	},
+	"RichManRoundAwardConfig": {
+		"award": "RewardData[]"
+	},
+	"RechargeDaysAwardsConfig": {
+		"awardList":"RewardData[]"
+	},
+	"VipGiftConfig": {
+		"awards": "RewardData[]"
+	},
+	"NewWorldBossBaseConfig": {
+		"pvpaReward":"RewardData[]",
+		"pvpbReward":"RewardData[]"
+	},
+	"PrestigeBase":{
+		"topThree":"{des:string, res:string}[]",
+		"skillTips":"string[]"
+	},
+	"HeartMethodBaseConfig":{
+		"proShowList":"HeartTypeData[]"
+	}
+}

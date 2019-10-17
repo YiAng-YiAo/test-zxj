@@ -1,0 +1,36 @@
+--G-公会战.xlsx 常量配置
+GuildBattleConst={
+
+	occupationAward = {{type=0,id=2,count=20000},{type=1,id=900009,count=1},{type=1,id=900007,count=1},{type=1,id=900008,count=1}},
+	openLevel = 60,
+	maxDay = 8,
+	continueTime = 60 * 20,
+	openServer = {day =4,hours =20,min = 0},
+	occupationAwardShow = {{type=0,id=2,count=20000},{type=1,id=900009,count=1},{type=1,id=900007,count=1},{type=1,id=900008,count=1}},
+	memberOccupationAwardHead = "主殿占领奖励",
+	memberOccupationAwardContext = "恭喜你的仙盟成功占领了仙宫，成为仙宫的主人，所有仙盟成员获得“仙宫精英”称号。占领仙盟将获得20000元宝的红包奖励，由盟主进行分发。",
+	gateLiveTime = 120,
+	gateLotteryWaitTime = 60,
+	gatherTime = 300,
+	hefuAward = {
+ leader = {
+  context = "合服期间，您的仙盟在仙宫争霸中成功占领了主殿，附件是您本次活动的奖励，请查收。",
+  title = "仙宫争霸盟主奖",
+  award = {
+   [1] = {{type=0,id=2,count=20000},{type=1,id=200917,count=3}},
+   [2] = {{type=0,id=2,count=20000},{type=1,id=200917,count=3}},
+   [3] = {{type=0,id=2,count=20000},{type=1,id=200917,count=3}},
+  }
+ },
+ normal = {
+  context = "合服期间，您在仙宫争霸活动中大显神威，附件是您本次活动的奖励，请查收。",
+  title = "仙宫争霸战斗奖",
+  award = {
+   [1] = {{type=0,id=2,count=200},{type=1,id=200005,count=5},{type=0,id=1,count=500000}},
+   [2] = {{type=0,id=2,count=200},{type=1,id=200005,count=5},{type=0,id=1,count=500000}},
+   [3] = {{type=0,id=2,count=200},{type=1,id=200005,count=5},{type=0,id=1,count=500000}},
+  }
+ }
+},
+	hefuOpen = {{day = 3,hours = 20,min = 0},{day = 5,hours = 20,min = 0},{day = 7,hours = 20,min = 0}},
+}

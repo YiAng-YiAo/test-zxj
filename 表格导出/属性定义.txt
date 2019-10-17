@@ -1,0 +1,207 @@
+	// 属性定义
+	enum AttributeType {
+		atHp = 0,	// 0,当前hp
+		atMp,		// 1,当前mp
+		atHpMax,	// 2,最大血量
+		atMpMax,	// 3,最大mp
+		atAtk,		// 4,物攻
+		atDef,		// 5,物防御
+		atRes,		// 6,魔法防御
+		atCrit,		// 7,暴击率
+		atTough,	// 8,坚韧（暴击率抵抗）
+		atMoveSpeed,	// 9,移动速度
+		atAttackSpeed,	// 10,攻击速度
+
+		atHpEx,		// 11,倍率属性 10000= 100%
+		atAtkEx,	// 12,倍率属性 10000= 100%
+		atStunPower,	// 13,麻痹力
+		atStunRes,		// 14,麻痹抗性
+		atStunTime,		// 15,麻痹时间
+		atDamageReduction, // 16,伤害减免 比率万分比
+
+		atCritHurt, // 17,暴击伤害 值
+		atRegeneration, // 18,每秒回复
+		atCritEnhance, // 19,暴击伤害加强
+		atPenetrate, // 20,穿透(无视万分比双防)
+
+		atRoleDamageEnhance,   // 21,攻击玩家伤害加深 万份比
+		atRoleDamageReduction, // 22,受到玩家伤害减免 万分比
+
+		atDefEx,		// 23,物防御万分比
+		atResEx,		// 24,魔法防御万分比
+		atNeiGong, //25,当前内功
+		atNeiGongMax,//26,最大内功
+		atNeiGongDamageAbsorb,//27,内功吸收伤害 万分比
+
+		atJob1HpEx,	//28,战士生效,增加最大生命
+		atJob2HpEx,	//29,法师生效,增加最大生命
+		atJob3HpEx,	//30,道士生效,增加最大生命
+
+		atNeiGongRestore, //31,定时恢复内功值
+
+		atVamirePro, //32.传世装备,攻击时吸血的概率(万份比)
+		atVamirePen, //33.传世装备,攻击时吸血的伤害比例(万份比)
+		atVamireCd,	//34.传世装备,攻击时吸血的cd(毫秒)
+
+		atCursePro, //35.传世装备,诅咒概率(万份比)
+		atCurseCd,  //36.传世装备,诅咒cd(毫秒)
+
+		atAttAddDamPro, //37.攻击增加伤害的概率(万份比)(兵魂)
+		atAttAddDamVal, //38.攻击增加伤害的值(兵魂)
+		atBeAttAddHpPro,//39.受到攻击时候恢复生命的概率(万份比)(兵魂)
+		atBeAttAddHpVal,//40.受到攻击时候恢复生命的值(兵魂)
+		atAttMbAddDamPen,//41.对被麻痹的目标额外造成X%伤害提升(兵魂)
+		atHpLtAddBuff,	//42.生命低于(万分比例)时,触发生命恢复buff(兵魂)
+		atAttHpLtPenAddDam,//43.攻击生命低的目标增加伤害的血量比例(万份比)(兵魂)
+		atAttHpLtAddDamPen,//44.攻击生命低的目标增加伤害比例(万份比)(兵魂)
+
+		atJob1AtkEx,	//45,战士生效,增加物攻
+		atJob2AtkEx,	//46,法师生效,增加物攻
+		atJob3AtkEx,	//47,道士生效,增加物攻
+
+		atJob1DefEx,	//48,战士生效,增加物防御
+		atJob2DefEx,	//49,法师生效,增加物防御
+		atJob3DefEx,	//50,道士生效,增加物防御
+
+		atJob1ResEx,	//51,战士生效,增加魔法防御
+		atJob2ResEx,	//52,法师生效,增加魔法防御
+		atJob3ResEx,	//53,道士生效,增加魔法防御
+
+		atAttPerDamPan, //54.命中时追加当前伤害50%的额外伤害的机率(万份比)(兵魂)
+		atDamageEnhance,//55.对目标加深伤害万份比
+		atCritEnhanceResist, // 56,暴击伤害抵抗率
+		atHolyDamege,		//57.神圣伤害固定值
+		atHolyMaster,		//58.神圣伤害精通率
+		atHolyResist,		//59.神圣伤害抵抗率
+		atTogetherHolyDamege,		//60.合击神圣伤害固定值
+		atTogetherHolyMaster,		//61.合击神圣伤害精通率
+		atTogetherHolyResist,		//62.合击神圣伤害抵抗率
+		atZhuiMingPro,		//63.触发追命伤害的概率(万分比) 心法系统
+		atZhuiMingVal,		//64.追命伤害(固定值) 心法系统
+		atHuiXinDamage,		// 65,会心伤害率(万份比)
+		atNeiGongEx, //66.内功倍率(万分比)
+		atDeadLyPro,		//67.致命一击概率
+		atDeadLyMaster,		//68.致命一击伤害精通率
+		atDeadLyResist,		//69.致命一击伤害抵抗率
+		atAddEnemyHp,		//70.自己被打后给对方加血(固定值)
+		atHurtMyself,		//71.攻击对方后自己掉血(万份比)
+		atBladeMailPro,  //72.刃甲概率(万份比)
+		atBladeMailPer,  //73.刃甲反伤(万份比)
+		atDefPen,		 //74.物防穿透(万份比)
+		atResPen,		 //75.魔防穿透(万份比)
+		atDeadLyHurt,    //76.致命一击附加伤害(固定值)
+		atDeadLyHurtResist,    //77.致命一击附加伤害减免(固定值)
+		atCritHurtResist, //78.暴击附加伤害减免(固定值)
+		atHunGuPro, //79.魂骨6件套共鸣触发概率
+		atHunGuHurt, //80.魂骨6件套共鸣增加伤害万分比
+		atHunGuCd, //81.魂骨6件套共鸣cd
+		atHearthDamege,//82.心法3额外伤害(固定值)
+		atHearthHurt,//83.心法3额外伤害率(万份比)
+		atHearthCount,//84.心法3每N次触发82and83 同时触发
+		atCount,
+	};
+
+	//扩展属性定义
+	enum ExAttributeType {
+		eatReflectProbability = 0,	// 0,反伤概率
+		eatReflectRate, // 1,反伤比率
+		eatIgnoreReflect, // 2,无视反伤
+		eatGodBlessProbability, // 3,神佑触发 概率
+		eatGodBlessRate, // 4,神佑复活万分比
+		eatDeathCurseProbability, // 5,死咒触发概率
+		eatDeathCurseDamageIncrease, //6,死咒增加伤害万份比
+		eatDeathCurseTime,		//7.死咒效果展示时间
+		eatAllCrit,		// 8.攻击会触发暴怒的概率，0-10000
+		eatAllCritTime,	// 9.AllCrit暴怒触发后，持续的时间, 单位:毫秒
+		eatBeHitTimesDodge,//10.受到X次攻击时必定闪避
+		eatAttackTimesCrit,//11.攻击X次必定产生暴击（暴击）
+		eatAttackAddHpProbability,//12.治疗戒指,攻击时候补血的概率
+		eatAttackAddHpValue,//13.治疗戒指,攻击的时候补血数
+		eatAddToWarriorDamageInc,//14.增加对战士的伤害万份比
+		eatAddToMageDamageInc,//15.增加对法师的伤害万份比
+		eatAddToTaoistDamageInc,//16.增加对道士的伤害万份比
+		eatSubWarriorDamageInc,//17.减少受到战士的伤害万份比
+		eatSubMageDamageInc,//18.减少受到法师的伤害万份比
+		eatSubTaoistDamageInc,//19.减少受到道士的伤害万份比
+		eatTogetherHitFree,//20.减少合击受到的伤害万份比
+		eatTogetherHitMonDamageInc,//21.合击装备在合击技能的时候对怪物的伤害万份比
+		eatTogetherHitRoleDamageInc,//22.合击装备在合击技能的时候对玩家的伤害万分比
+		eatTogetherHitCdSub,//23.合击装备齐鸣效果减少合击技能CD时间(万份比)
+		eatAdditionalHarm,//24伤害增加固定值
+		eatReductionHarm,//25伤害减免固定值
+		eatMiss,//26闪避概率万分比
+		eatBaseSkillExArg,// 27基础及能额外系数加成百分比
+		eatMultipleCrit,//28多重暴击几率万分比
+		eatMultipleCritCoeff,// 29幸运一击的伤害加深比率(万分比)
+		atMultipleCritHurt,//30幸运一击的伤害加深固定值
+		eatAddWarriorDamageInc,//31.增加战士的伤害万份比
+		eatAddMageDamageInc,//32.增加法师的伤害万份比
+		eatAddTaoistDamageInc,//33.增加道士的伤害万份比
+		eatMultipleCritTime, //34.3职业幸运一击的冷却时间
+		eatAttackAddHpTime, //35.治疗戒指,攻击的时候补血的冷却时间
+		eatStunTime,	//36.麻痹冷却时间
+		eatGodPowerCd,//37.神之力触发CD(冷却时间)
+		eatGodPowerProbability, // 38,神之力触发概率
+		eatGodPowerDamageIncrease, //39,神之力增加伤害万份比
+		eatHpLtAddBuffId,   //40.生命低于(万分比例)时,触发生命恢复buff(兵魂5)
+		eatHpLtAddBuffCd, //41.生命低于(万分比例)时,触发生命恢复buff CD
+		eatHit, //42.命中率万分比
+		eatSkillVamirePro, //43.吸血万分比，针对特定技能
+		eatWarriorPeakDamageInc,//44.战士神兵巅峰伤害万份比
+		eatMagePeakDamageInc,//45.法师神兵巅峰伤害万份比
+		eatTaoistPeakDamageInc,//46.道士神兵巅峰伤害万份比
+		eatPetSkillLevel,//47.宠物专用技能等级
+		eatPetAttackInc,//48.道士宠物攻击力加成万分比
+		eatSkillAddArgA, //49.对技能的A参数的增加值-攻击技能的伤害值比例提升
+		eatSkillAddArgB, //50.对技能的B参数的增加值-攻击技能的固定伤害值提升
+		eatResistDeathCd,//51.濒死时候抵挡一次死亡伤害CD
+		eatResistDeathPro,//52.濒死时候抵挡一次死亡伤害的概率万份比
+		eatResistDeathRate,//53.濒死时候抵挡一次死亡伤害回血的万份比
+		eatCritHpLt, //54.产生暴击时生命低于(万分比例)暴击伤害提升(新玉佩)
+		eatCritHpLtAddDamage, //55.产生暴击时生命低于(万分比例)暴击伤害提升率(新玉佩)
+
+		eatMiJiKNHpPer,//56.狂怒秘籍低于多少血量百分比生效
+		eatMiJiKNHpSubPer,//57.狂怒秘籍每降低百分多少
+		eatMiJiKNDamPer,//58.狂怒秘籍增加多少百分比
+		//INT((m - 自身血量百分比) / x)*y > 0
+
+		eatMiJiZHDamPer,//59.追魂秘籍伤害百分比
+		eatMiJiZHTime,//60.追魂秘籍冷却时间
+
+		eatMiJiBQHpTime,//61.不屈秘籍冷却时间
+		eatMiJiBQHpPer,//62.不屈秘籍低于多少血量百分比生效
+		eatMiJiBQBuffId,//63.不屈秘籍buffID
+		eatCount
+	};
+
+
+
+// 状态类型
+enum StatusType
+{
+	StatusType_Invincibility = 0,	// 无敌(不可被控制，不受伤害)
+	StatusType_Stun = 1,		// 昏迷(不可操作，（移动，施法）） 麻痹产生效果
+	StatusType_Shild = 2,		// 护盾(百分比抵消伤害，抵消伤害有总量)
+	StatusType_Armor = 3,		// 霸体（不可被位移控制（位移，定身））
+	StatusType_Bind = 4,		// 定身（不可移动）
+	StatusType_DeathCurse = 5,	// 死咒(不能触发神佑) 
+	StatusType_AllCrit = 6,		// 必定暴击的状态   
+	StatusType_HighestHurt = 7, //最高伤害
+
+	StatusType_ResStun = 8,		// 抵抗昏迷(只抵抗昏迷)
+//	
+	StatusType_Count, 
+};
+
+
+
+
+
+
+
+
+
+
+
+
+

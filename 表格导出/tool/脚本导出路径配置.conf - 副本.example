@@ -1,0 +1,5 @@
+--this config file has been generated/modified by table tool.
+--you can modify it by yourself.
+
+server_data_path = "F:/M2/M2-D/tool/表格导出/output/sconf"
+client_data_path = "F:/M2/M2-D/tool/前端配置/coutput"

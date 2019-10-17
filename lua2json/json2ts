@@ -1,0 +1,189 @@
+var isArr = function (data) {
+    var isNumber = typeof data == "object";
+    var isHas = false;
+    for (var i in data) {
+        isHas = true;
+        if (!isNumber)
+            break;
+        isNumber = !isNaN(parseInt(i));
+    }
+    return isNumber && isHas;
+};
+var getArrLayer = function (data) {
+    var levelArr = [];
+    setLevel(data, levelArr);
+    levelArr.sort(function (a, b) { return -(a - b) / Math.abs(a - b); });
+    return levelArr[0] || 0;
+};
+var setLevel = function (data, levelArr, level) {
+    if (levelArr === void 0) { levelArr = []; }
+    if (level === void 0) { level = 0; }
+    if (isArr(data)) {
+        level++;
+        levelArr.push(level);
+        var firstType = void 0;
+        var firstArr = void 0;
+        var isSame = false;
+        var isObj = false;
+        for (var i in data) {
+            var t = typeof data[i];
+            isObj = t == "object";
+            if (!firstType) {
+                firstType = t;
+                firstArr = isArr(data[i]);
+            }
+            isSame = firstType == t && firstArr == isArr(data[i]);
+            if (!isSame)
+                break;
+        }
+        if (isSame && isObj)
+            for (var i in data) {
+                setLevel(data[i], levelArr, level);
+            }
+    }
+};
+var formatOneArr = function (data, layer, result) {
+    if (layer === void 0) { layer = 1; }
+    if (result === void 0) { result = {}; }
+    if (layer > 1) {
+        --layer;
+        for (var i in data) {
+            formatOneArr(data[i], layer, result);
+        }
+        return result;
+    }
+    if (typeof data == "object") {
+        for (var i in data) {
+            formatObj(data[i], result);
+        }
+    }
+    var isHas = false;
+    for (var i in result) {
+        isHas = true;
+    }
+    if (!isHas && data.hasOwnProperty("length")) {
+        var t = void 0;
+        var isSame = false;
+        for (var i in data) {
+            if (!t)
+                t = typeof data[i];
+            isSame = t == typeof data[i];
+            if (!isSame)
+                break;
+        }
+        if (isSame)
+            result = t;
+    }
+    return result;
+};
+var formatObj = function (data, result) {
+    if (result === void 0) { result = {}; }
+    for (var i in data) {
+        if (!result.hasOwnProperty(i)) {
+            result[i] = data[i];
+        }
+        else {
+            if (typeof data[i] == 'object' && !isArr(data[i])) {
+                formatObj(data[i], result[i]);
+            }
+        }
+    }
+    return result;
+};
+var formatDynamicType = function (data) {
+    for (var i in data) {
+        var type = typeof data[i];
+        if (isArr(data[i])) {
+            var l = getArrLayer(data[i]);
+            var ta = [];
+            ta.length = l + 1;
+            data[i] = formatDynamicType(formatOneArr(data[i], l)).replace(/"/g, "") + ta.join("[]");
+        }
+        else if (type == "object") {
+            formatDynamicType(data[i]);
+        }
+        else {
+            data[i] = type;
+        }
+    }
+    return JSON.stringify(data);
+};
+var formatType = function (data) {
+    var title = "interface ";
+    var str = "";
+    var arr = str.split(title);
+    arr.pop();
+    var tObj = {};
+    for (var i in arr) {
+        var key = arr[i].slice(0, arr[i].indexOf(" "));
+        if (!key.length)
+            continue;
+        tObj[key] = arr[i];
+    }
+    arr.length = 0;
+    for (var i in tObj) {
+        arr.push(tObj[i]);
+    }
+    return "";
+};
+var ff = function (data, title, defFile) {
+    if (title === void 0) { title = ''; }
+    var str = "";
+    for (var i in data) {
+        if (str.length && title)
+            str += "\n";
+        if (title && customJson && customJson[title] && customJson[title][i]) {
+            str += "\t" + i + ": " + customJson[title][i] + ";";
+            continue;
+        }
+        var isObj = typeof data[i] == "object";
+        str += "" + (title ? "\t" : " ") + i + ": " + (isObj ? "{" + ff(data[i]) + "}" : data[i]) + (defFile && i in defFile ? " = " + defFile[i] : "") + (title ? ";" : ",");
+    }
+    if (str.charAt(str.length - 1) == ",")
+        str = str.slice(0, -1);
+    return str;
+};
+var fs = require('fs');
+var _a = process.argv.slice(2), dir = _a[0], file = _a[1], customFile = _a[2], def_dir = _a[3];
+var jsonStr = fs.readFileSync(file);
+var customJson = JSON.parse(fs.readFileSync(customFile));
+var configJson = JSON.parse(jsonStr);
+var layers = {};
+var result = {};
+for (var i in configJson) {
+    layers[i] = getArrLayer(configJson[i]);
+    var res = void 0;
+    if (layers[i]) {
+        res = formatOneArr(configJson[i], layers[i]);
+    }
+    else {
+        res = formatObj(configJson[i]);
+    }
+    result[i] = res;
+}
+result = JSON.parse(formatDynamicType(result));
+var gs1 = "";
+var gs2 = "";
+var configType = "";
+var list = def_dir ? fs.readdirSync(def_dir) : [];
+for (var i in result) {
+    var isDef = list.indexOf(i + ".json") >= 0;
+    var defFile = void 0;
+    if (isDef)
+        defFile = JSON.parse(fs.readFileSync("" + def_dir + i + ".json"));
+    var title = isDef ? "class" : "interface";
+    configType += title + " " + i + " {\n" + ff(result[i], i, defFile) + "\n}\n\n";
+    var ta = [];
+    ta.length = layers[i] + 1;
+    if (gs1)
+        gs1 += "\t";
+    gs1 += "static " + i + ": " + i + ta.join("[]") + ";\n";
+    if (gs2)
+        gs2 += ",";
+    gs2 += "\n\t\t\"" + i + "\": " + layers[i];
+}
+fs.writeFileSync((dir || "") + "ConfigType.ts", configType);
+var configResult = fs.readFileSync("GlobalConfig").toString();
+configResult = configResult.replace(/\/\*\*1\*\//, gs1);
+configResult = configResult.replace(/\/\*\*2\*\//, gs2);
+fs.writeFileSync((dir || "") + "GlobalConfig.ts", configResult);

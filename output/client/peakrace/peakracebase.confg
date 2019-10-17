@@ -1,0 +1,22 @@
+--D-巅峰赛季.xlsx 基础配置
+PeakRaceBase={
+
+	openTime = "2018.1.15",
+	needZsLv = 3,
+	openDay = 5,
+	interval = 14,
+	KnockOutTime = 45,
+	signUpLose = 10,
+	promWin = 3,
+	promInterval = 300,
+	likeCount = 3,
+	likeScore = 88,
+	winMail = 61,
+	crossWinMail = 67,
+	crossRelTime = 388800,
+	exchangeItems = {204076},
+	singleRewards = {{type=1,id=204095,count=1},{type=1,id=204093,count=1},{type=1,id=204076,count=4000},{type=1,id=500005,count=7}},
+	croosRewards = {{type=1,id=204096,count=1},{type=1,id=204076,count=6000},{type=1,id=204094,count=1},{type=1,id=204093,count=1},{type=1,id=500005,count=10}},
+	mobaiNum = 3,
+	mobaiChips = 1000,
+}

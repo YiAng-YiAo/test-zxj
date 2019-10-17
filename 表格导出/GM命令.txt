@@ -1,0 +1,149 @@
+【触发跨天事件】
+@newday
+
+【增加经验】
+@addexp 321321
+
+【翅膀训练】
+@addwingexp 10000000
+
+【翅膀开启
+@wingopen
+
+【邮件奖励】
+@mailaward
+
+【读取邮件】
+@readmail
+
+【给自己发一封测试邮件】
+@mailtest id
+后面的id对应邮件表里面的id，不填默认发id为1的邮件
+
+【强化】
+@enhance
+
+【增加物品】
+@additem 123
+
+【增加元宝】
+@addyuanbao 123
+
+【增加金币】
+@addgold 123
+
+【退出副本】
+@quitfb
+
+【进入/通关关卡副本】
+@chapter2
+
+【VIP等级】
+@setvip 1
+
+【设置属性】
+@setattr 1 23333 
+参数：属性类型，属性值
+
+
+【增加充值额度】
+@addrecharge 123 测试充值的
+
+【测试公告】
+@noticetest 测试公告播放效果
+
+【设置限时任务阶段】
+@setLimitTaskFinish 限时任务id
+
+【清理背包】
+@clearbag 0-2 背包序号 0道具包1装备包2仓库
+
+【增加货币】
+@addAward [type] [id] [count]
+@addAward 0 10 900
+
+【设置等级】
+@setlevel x
+
+【通天塔通关层数】
+@challengeFb 100
+
+
+【发宝箱】
+@treasurebox 22030
+
+【行会战】
+@ogb   开启行会战
+@cgb   结束行会战
+@kga   加积分
+
+【增加转生修为】
+@addzhuanshengexp 123
+
+
+【增加历练值】
+@addtrain 1230000
+
+【测试邮件(自己)】
+@mailtest id
+【测试邮件(指定账户)】
+@sendmail accountname id
+有份邮件配置表,按id配了几个测试邮件,这里的id就是配置里的id
+
+【做指定的任务】
+@acceptquest 成就ID 任务ID
+@acceptquest 1000 100082
+【公会】
+公会资金  @addguildfund 9999 
+公会贡献  @addguildgx 99999
+
+
+【购买月卡】
+@buymonthcard
+
+【增加功勋值】
+@storeM feats 10000
+
+【BOSS引导副本】
+@leadfb e 40000
+
+【龙城引导副本】
+@leadfb e 40001
+（通过主线进入）
+@acceptquest 1000 100030
+
+【产生掉落】
+@dropbags number
+@dropbags 7
+
+【清空掠夺记录】
+@caikuang 5 
+
+【重置采矿次数和掠夺次数】
+@caikuang 4
+
+【世界BOSS】
+@newworldboss start --开启世界boss活动
+@newworldboss end --结束世界boss活动
+@newworldboss enter --进入世界boss
+
+【变得高富帅】
+@setbianniubi
+
+@rsfranking
+
+【主城刷BOSS -- 怪物攻城] 
+@city b 31005 10000
+  ......
+@city b 31016 10000
+
+【版本号查看】
+@version
+
+【进入副本】
+@enterFb 50003
+
+
+【执行函数】
+@runfun CampBattleOpen()          万仙
+@runfun PassionPointOpen()        聚灵

@@ -1,0 +1,73 @@
+class GlobalConfig {
+
+	private static config;
+
+	static init() {
+		let self = this;
+		if (self.config)return;
+
+		let config = self.config = RES.getRes("config_json");
+		if (!config) {
+			return;
+		}
+		
+		let parseKeys = function (obj:any, proto:any, key:number) {
+			if (key == 0) {
+				obj.__proto__ = proto;
+			} else {
+				for (let i in obj) {
+					parseKeys(obj[i], proto, key - 1);
+				}
+			}
+		}
+
+		for (let key in config) {
+
+			let value = config[key];
+
+			let objCls = egret.getDefinitionByName(key);
+
+			if (objCls) {
+				//用来存储配置一个默认实例
+				let objKey = `_obj${key}`;
+				self[objKey] = new objCls();
+
+				//用来确认配置表是否已经设置 __proto__ 为 储存的实例（this[objKey])
+				let boolKey = `_bool${key}`;
+				self[boolKey] = false;
+
+				//将真正的配置存放在this[newKey]中
+				let newKey = `_${key}_`;
+				//创建key引用配置
+				Object.defineProperty(self, key, {
+					get: function () {
+						let obj = self[newKey];
+						if (self[boolKey]) {
+							return obj;
+						}
+
+						let proto = self[objKey];
+
+						parseKeys(obj, proto, GlobalConfig.keys[key] || 0);
+
+						self[boolKey] = true;
+
+						return obj;
+					},
+					set: function (val) {
+						self[newKey] = val;
+					}
+				});
+			}
+
+			//是否需要深拷贝赋值？
+			self[key] = value;
+		}
+
+		RES.destroyRes("config_json");
+	}
+
+	/**1*/
+
+	private static keys = {/**2*/};
+}
